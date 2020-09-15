@@ -44,7 +44,7 @@ asg_app_grace        = "400"
 asg_app_hct          = "ELB"
 asg_app_cap          = "1"
 
-alarms_sms = "+1111...."
+alarms_sms = "+16155178804"
 
 zone_id     = "Z0065671132P4DBJEK0Y7"
 route53_dns = "firatlii.com"
