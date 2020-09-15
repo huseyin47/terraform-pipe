@@ -13,8 +13,8 @@ resource "aws_iam_policy" "s3-policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-           "${module.greg-test-baby.bucket_arn}",
-          "${module.greg-test-baby.bucket_arn}/*"
+           "${module.my-unique-bckt-1.bucket_arn}",
+          "${module.my-unique-bckt-1.bucket_arn}/*"
       ]
     }
   ]
