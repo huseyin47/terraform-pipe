@@ -9,7 +9,7 @@ variable "bucket_name" {
 variable "s3_tags" {
   type = map
   default = {
-    Name        = "greg-baby"
+    Name        = "testt"
     Environment = "test"
   }
 }

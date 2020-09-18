@@ -1,13 +1,14 @@
 # --------------------------------------------------------------------------
 # Creating Origin Access Identity for CloudFront 
 # --------------------------------------------------------------------------
+
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "Some comment"
 }
 resource "aws_cloudfront_distribution" "s3_distribution_task" {
   origin {
-    domain_name = module.aws_s3_bucket.my-unique-bckt-1.domain_name
-    origin_id   = module.aws_s3_bucket.my-unique-bckt-1.id
+    domain_name = module.my-unique-bckt-1.this_s3_bucket_bucket_regional_domain_name
+    origin_id   = module.my-unique-bckt-1.this_s3_bucket_id
     s3_origin_config {
       # origin_access_identity = "origin-access-identity/cloudfront/ABCDEFG1234567"
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
@@ -19,7 +20,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_task" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = module.aws_s3_bucket.my-unique-bckt-1.id
+    target_origin_id = module.my-unique-bckt-1.this_s3_bucket_id
     forwarded_values {
       query_string = false
       cookies {
@@ -36,7 +37,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_task" {
     path_pattern     = "/content/immutable/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = module.aws_s3_bucket.my-unique-bckt-1.id
+    target_origin_id = module.my-unique-bckt-1.this_s3_bucket_id
     forwarded_values {
       query_string = false
       headers      = ["Origin"]
@@ -71,7 +72,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_task" {
 data "aws_iam_policy_document" "s3_policy" {
   statement {
     actions   = ["s3:GetObject"]
-    resources = ["${module.aws_s3_bucket.my-unique-bckt-1.arn}/*"]
+    resources = ["${module.my-unique-bckt-1.this_s3_bucket_arn}/*"]
     principals {
       type        = "AWS"
       identifiers = ["${aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn}"]
@@ -79,6 +80,6 @@ data "aws_iam_policy_document" "s3_policy" {
   }
 }
 resource "aws_s3_bucket_policy" "s3BucketPolicy" {
-  bucket = module.aws_s3_bucket.my-unique-bckt-1.id
+  bucket = module.my-unique-bckt-1.this_s3_bucket_id
   policy = data.aws_iam_policy_document.s3_policy.json
 }

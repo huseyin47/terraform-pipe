@@ -1,3 +1,5 @@
+# I'M NOT SURE BUT I THINK THIS USERDATA MAKES SERVERS 100% CPU USED.
+
 resource “template_file” “user_data” {
   template = “app_install.tpl”
   

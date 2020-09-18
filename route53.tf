@@ -1,6 +1,6 @@
 resource "aws_route53_record" "www" {
-  zone_id = var.zone_id     # your zone_id
-  name    = var.route53_dns #put your website name
+  zone_id = var.zone_id
+  name    = var.route53_dns
   type    = "A"
   alias {
     name                   = aws_lb.group3_web_elb.dns_name

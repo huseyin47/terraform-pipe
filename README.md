@@ -1,3 +1,7 @@
+THIS README FILE IS FOR USERS' PASSWORDS.                               
+                               
+                               
+                               
                                Create Password for IAM_USER using Terraform Decode and Decrypt data into Password
 
 1.Need to install Keybase in our local

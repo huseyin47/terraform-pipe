@@ -1,10 +1,10 @@
 
 # Creation of S3
-   # Attach account number to bucket name.
-   #data "aws_caller_identity" "current" {}
-   #module "my-unique-bckt-1-${data.aws_caller_identity.current.account_id}"
+# Attach account number to bucket name.
+#data "aws_caller_identity" "current" {}
+#module "my-unique-bckt-1-${data.aws_caller_identity.current.account_id}"
 
-  module "my-unique-bckt-1" {
+module "my-unique-bckt-1" {
   source      = "./module/s3"
   bucket_name = "my-unique-bckt-1"
   s3_tags = {
